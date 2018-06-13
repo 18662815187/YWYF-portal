@@ -1,0 +1,328 @@
+
+			.text_box{
+				width: 80%;
+				overflow: hidden; 
+				text-overflow: ellipsis;
+				white-space:nowrap;
+				display: inline-block;
+				font-size: 14px;
+				padding: 0px 0px 20px 0px;
+			}
+			.text_box span{
+				float: left;
+			}
+			.table_head{
+				margin: auto;
+				font-size: 14px;
+				color: #666;
+				text-align: center;
+			}
+			.order_last_box{
+				float: right;
+				margin-bottom:50px ;
+			}
+			.order_last {
+				width: 350px;
+				border: 1px solid #d7342e;
+				padding: 10px;
+				font-size: 14px;
+			}
+			.order_last span{
+				font-size:14px ;
+				color: #666;
+			}
+			.order_submit{
+				width: 120px;
+				height: 40px;
+				background-color: #d7342e;
+				color: #fff;
+				padding:5px 20px ;
+				font-size: 20px;
+				border: 0px;
+				float: right;
+			}
+			.order_submit1{
+				width: 120px;
+				height: 40px;
+				background-color: #808080;
+				color: #fff;
+				padding:5px 20px ;
+				font-size: 20px;
+				border: 0px;
+				float: right;
+			}
+			.back{
+				color: #2F65BA;
+				font-size:14px ;
+			}
+			.order_commodity{
+				width: 100%;
+				padding: 5px;
+				
+			}
+			.order_commodity_w{
+				border-bottom: 4px solid #f3f3f3;
+			}
+			.order_commodity_w:last-child{
+				border-bottom: 4px solid #b2d1ff;
+			}
+			.order_commodity td{
+				padding: 10px;
+				font-size: 14px;
+				color: #666;
+				border-bottom: 2px solid #fff;
+			}
+			.order_commodity_tou{
+				padding-left: 0px  !important;
+				font-weight: 800;
+			}
+			.order_commodity td:nth-child(1){
+				
+				width: 80px;
+			}
+			.order_commodity td:nth-child(2){
+				width: 360px;
+				text-align: left;
+			}
+			.order_commodity td:nth-child(3){
+				width: 80px;
+			}
+			.order_commodity td:nth-child(4){
+				width: 80px;
+			}
+			.order_commodity td:nth-child(5){
+				width: 80px;
+			}
+			.order_commodity td:nth-child(6){
+				width: 80px;
+				
+			}
+			.order_commodity td:nth-child(7){
+				width: 80px;
+				
+			}
+			.firm_w{
+				background-color: #b2d1ff;
+				display: inline-block;
+				padding: 3px;
+				color: #fff;
+			}
+			.firm_list{
+				background-color: #fbfcff;
+				
+			}
+			.head_line{
+				border-bottom: 2px solid #b2d1ff !important;
+				
+			}
+			.list_line{
+				border-bottom:2px solid #fff;
+			}
+			.company_total{
+				color: #d7342e;
+			}
+			.gray{
+				text-decoration: line-through;
+				color: #cdcdcd;
+			}
+			.body2{
+				margin: 8em;
+			}
+			.body2 table{
+				padding: 5px;
+				font-size: 14px;
+			}
+			.body2 table td{
+				padding: 5px;
+			}
+			.red{
+				color: #d7342e;
+			}
+			.h2-single{
+				background-color: #f3f8fe;
+				color: #014d7f;
+			}
+			.save{
+				width: 80px;
+				height: 30px;
+				color: #fff;
+				background-color: #fc6210;
+				border: 0px;
+				border-radius: 5px;
+			}
+			.default{
+				border: 2px solid #fc6210;	
+				background: #ffd6cc;
+				color: #f30;
+				text-align: center;
+				border-radius:3px ;
+			}
+			.default_hide{
+				
+			}
+			.modify{
+				color: #2F65BA;
+				text-decoration:underline
+			}
+			.modify:hover{
+				color: #fc6210;
+			}
+			.cue{
+				color: #d7342e;
+				margin-left: 15px;
+				display: none;
+			}
+			.select_address:hover{
+				background-color: #f1f1f1;
+			}
+			.last_def:hover{
+				color: #FC6210;
+				text-align: ;
+			}
+			
+			
+			.coupon_li_blue{
+				background-color: #cdcdcd;
+				padding:0px 10px;
+			}
+			.coupon_li{
+				background-color: #f1f1f1;
+				width: 150px;
+				text-align: center;
+				margin: 10px;
+				display: inline-block;
+			}
+			.coupon_li_t1{
+				color: #FFF;
+				font-size:30px ;
+			}
+			.coupon_li_t2{
+				color: #FFF;
+				font-size:18px ;
+			}
+			.coupon_li_t3{
+				color: rgba(0,0,0,0.5);
+				font-size:12px ;
+			}
+			.coupon_li_t4{
+				color: rgba(0,0,0,0.2);
+				font-size:12px ;
+			}
+			.coupon_li_foot p{
+				padding: 10px;
+			}
+			.coupon_li_x1{
+				width: 50px;
+				height: 25px;
+				background-color: #fff;
+				border-radius:0px 0px 30px 30px;
+				margin: auto;
+				margin-bottom: 10px;
+			}
+			.coupon_li_x2{
+				height: 15px;
+				width: 100%;
+				background: url(css/i/coupon20150805.png) -3px -296px no-repeat;
+			}
+			.coupon_li_hide{
+				display: none;
+			}
+			.coupon_ul{
+				border: 1px solid #f1f1f1; 
+				
+			}
+			.coupon_head_i{
+				background-color: #f1f1f1;
+				display: inline-block;
+				padding: 5px;
+				margin-bottom: 5px;
+				width: 80px;
+				text-align: center;
+				color: #666;
+				cursor:pointer
+			}
+			.coupon_head_i:hover{
+				color: #0087E5;
+			}
+			.coupon_dowm{
+				position: absolute;
+				top: 0px;
+				left: 80px;
+				width: 18px;
+				height: 18px;
+				background-image: url(../images/index_ico_png32.png);
+				background-position: -69px -76px; 
+				background-repeat:no-repeat;
+				
+			}
+			.coupon_o{
+				position: relative;
+			}
+			.logo_box{
+				margin-bottom: 10px;
+			}
+			.logo_img{
+				display: inline-block;
+			}
+			.logo_texts{
+				float: right;
+				margin-top:40px ;
+			}
+			.logo_texts div{
+				background-color: #e4e4e4;
+				padding:2px 5px;
+				display: inline-block;
+				margin-left: -4px;
+			}
+			.logo_texts div:last-child{
+				padding-right:15px;
+			}
+			.triangle-left{
+				background-image: url(../images/zhibiao.jpg);
+				background-position: 0px 0px; 
+				background-repeat:no-repeat;
+				background-size:50px 25px;
+				width:25px;
+				height: 25px;
+			}
+			.triangle-right{
+				background-image: url(../images/zhibiao.jpg);
+				background-position: -25px 0px; 
+				background-repeat:no-repeat;
+				background-size:50px 25px;
+				width:25px;
+				height: 25px;
+			}
+			.logo_add{
+				background-color: #dd514c !important;
+				color: #fff;
+			}
+			.body1{
+				margin-top: 30px;
+			}
+			
+			.inventory_cue_b{
+				position: relative;
+				width: 80%;
+			}
+			.inventory_cue{
+				background-color:#d7342e;
+				position: absolute;
+				padding: 2px;
+				color: #fff;
+				top: -30px;
+				left: -51px;
+				float:right ;
+				font-size: 11px;
+			}
+			.inventory_al_cue{
+				background-color:#d7342e;
+				display: none;
+				position: absolute;
+				padding: 2px;
+				color: #fff;
+				width: 220px;
+				bottom: -35px;
+				right: -190px;
+				border-radius: 3px;
+			}

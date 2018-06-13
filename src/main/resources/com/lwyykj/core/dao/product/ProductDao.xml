@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lwyykj.core.dao.product.ProductDao">
+	<resultMap id="BaseResultMap" type="com.lwyykj.core.bean.product.Product">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="brand_id" property="brandId" jdbcType="INTEGER" />
+		<result column="fac_id" property="facId" jdbcType="INTEGER" />
+		<result column="pic" property="pic" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="batch_num" property="batchNum" jdbcType="VARCHAR" />
+		<result column="dosage" property="dosage" jdbcType="VARCHAR" />
+		<result column="imgs" property="imgs" jdbcType="VARCHAR" />
+		<result column="specs" property="specs" jdbcType="VARCHAR" />
+		<result column="freight" property="freight" jdbcType="DOUBLE" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="package_list" property="packageList" jdbcType="VARCHAR" />
+		<result column="pro_typeId" property="proTypeid" jdbcType="INTEGER" />
+		<result column="disease_id" property="diseaseId" jdbcType="INTEGER" />
+		<result column="fun_id" property="funId" jdbcType="INTEGER" />
+		<result column="ph_id" property="phId" jdbcType="INTEGER" />
+		<result column="is_counter" property="isCounter" jdbcType="BIT" />
+		<result column="is_del" property="isDel" jdbcType="BIT" />
+		<result column="is_show" property="isShow" jdbcType="BIT" />
+		<result column="is_new" property="isNew" jdbcType="BIT" />
+		<result column="is_hot" property="isHot" jdbcType="BIT" />
+		<result column="is_commend" property="isCommend" jdbcType="BIT" />
+		<result column="is_activity" property="isActivity" jdbcType="BIT" />
+		<result column="create_time" property="createTime" jdbcType="INTEGER" />
+		<result column="sales" property="sales" jdbcType="INTEGER" />
+		<result column="click_num" property="clickNum" jdbcType="INTEGER" />
+		<result column="grade" property="grade" jdbcType="DOUBLE" />
+		<result column="whether_fee" property="whetherFee" jdbcType="BIT" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<if test="fields == null">
+			id, brand_id, fac_id, pic, name, batch_num, dosage, imgs, specs,
+			freight, description,
+			package_list, pro_typeId, disease_id, fun_id, ph_id, is_counter, is_del, is_show,
+			is_new, is_hot, is_commend, is_activity, create_time, sales,
+			click_num, grade, whether_fee
+		</if>
+		<if test="fields != null">
+			${fields}
+		</if>
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.lwyykj.core.bean.product.ProductQuery">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from ywyf_product
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+		<if test="startRow != null">
+			limit #{startRow} , #{pageSize}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		id,brand_id,fac_id,pic,name,batch_num,dosage,imgs,specs,freight,description,package_list,pro_typeId,disease_id,fun_id,ph_id,is_counter,is_del,is_show,is_new,is_hot,is_commend,is_activity,create_time,sales,click_num,grade,whether_fee
+		from ywyf_product
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from ywyf_product
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.lwyykj.core.bean.product.ProductQuery">
+		delete from ywyf_product
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.lwyykj.core.bean.product.Product">
+		insert into ywyf_product (id, brand_id, fac_id,
+		pic, name, batch_num,
+		dosage, imgs, specs,
+		freight, description, package_list,
+		pro_typeId, disease_id, fun_id,
+		ph_id, is_counter, is_del, is_show,
+		is_new, is_hot, is_commend, is_activity,
+		create_time, sales, click_num,
+		grade, whether_fee)
+		values (#{id,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER},
+		#{facId,jdbcType=INTEGER},
+		#{pic,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{batchNum,jdbcType=VARCHAR},
+		#{dosage,jdbcType=VARCHAR}, #{imgs,jdbcType=VARCHAR},
+		#{specs,jdbcType=VARCHAR},
+		#{freight,jdbcType=DOUBLE}, #{description,jdbcType=VARCHAR}, #{packageList,jdbcType=VARCHAR},
+		#{proTypeid,jdbcType=INTEGER}, #{diseaseId,jdbcType=INTEGER},
+		#{funId,jdbcType=INTEGER},
+		#{phId,jdbcType=INTEGER}, #{isCounter,jdbcType=BIT}, #{isDel,jdbcType=BIT},
+		#{isShow,jdbcType=BIT},
+		#{isNew,jdbcType=BIT}, #{isHot,jdbcType=BIT}, #{isCommend,jdbcType=BIT},
+		#{isActivity,jdbcType=BIT},
+		#{createTime,jdbcType=INTEGER}, #{sales,jdbcType=INTEGER}, #{clickNum,jdbcType=INTEGER},
+		#{grade,jdbcType=DOUBLE}, #{whetherFee,jdbcType=BIT})
+	</insert>
+	<insert id="insertSelective" parameterType="com.lwyykj.core.bean.product.Product"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into ywyf_product
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="brandId != null">
+				brand_id,
+			</if>
+			<if test="facId != null">
+				fac_id,
+			</if>
+			<if test="pic != null">
+				pic,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="batchNum != null">
+				batch_num,
+			</if>
+			<if test="dosage != null">
+				dosage,
+			</if>
+			<if test="imgs != null">
+				imgs,
+			</if>
+			<if test="specs != null">
+				specs,
+			</if>
+			<if test="freight != null">
+				freight,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="packageList != null">
+				package_list,
+			</if>
+			<if test="proTypeid != null">
+				pro_typeId,
+			</if>
+			<if test="diseaseId != null">
+				disease_id,
+			</if>
+			<if test="funId != null">
+				fun_id,
+			</if>
+			<if test="phId != null">
+				ph_id,
+			</if>
+			<if test="isCounter != null">
+				is_counter,
+			</if>
+			<if test="isDel != null">
+				is_del,
+			</if>
+			<if test="isShow != null">
+				is_show,
+			</if>
+			<if test="isNew != null">
+				is_new,
+			</if>
+			<if test="isHot != null">
+				is_hot,
+			</if>
+			<if test="isCommend != null">
+				is_commend,
+			</if>
+			<if test="isActivity != null">
+				is_activity,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="sales != null">
+				sales,
+			</if>
+			<if test="clickNum != null">
+				click_num,
+			</if>
+			<if test="grade != null">
+				grade,
+			</if>
+			<if test="whetherFee != null">
+				whether_fee,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="brandId != null">
+				#{brandId,jdbcType=INTEGER},
+			</if>
+			<if test="facId != null">
+				#{facId,jdbcType=INTEGER},
+			</if>
+			<if test="pic != null">
+				#{pic,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="batchNum != null">
+				#{batchNum,jdbcType=VARCHAR},
+			</if>
+			<if test="dosage != null">
+				#{dosage,jdbcType=VARCHAR},
+			</if>
+			<if test="imgs != null">
+				#{imgs,jdbcType=VARCHAR},
+			</if>
+			<if test="specs != null">
+				#{specs,jdbcType=VARCHAR},
+			</if>
+			<if test="freight != null">
+				#{freight,jdbcType=DOUBLE},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="packageList != null">
+				#{packageList,jdbcType=VARCHAR},
+			</if>
+			<if test="proTypeid != null">
+				#{proTypeid,jdbcType=INTEGER},
+			</if>
+			<if test="diseaseId != null">
+				#{diseaseId,jdbcType=INTEGER},
+			</if>
+			<if test="funId != null">
+				#{funId,jdbcType=INTEGER},
+			</if>
+			<if test="phId != null">
+				#{phId,jdbcType=INTEGER},
+			</if>
+			<if test="isCounter != null">
+				#{isCounter,jdbcType=BIT},
+			</if>
+			<if test="isDel != null">
+				#{isDel,jdbcType=BIT},
+			</if>
+			<if test="isShow != null">
+				#{isShow,jdbcType=BIT},
+			</if>
+			<if test="isNew != null">
+				#{isNew,jdbcType=BIT},
+			</if>
+			<if test="isHot != null">
+				#{isHot,jdbcType=BIT},
+			</if>
+			<if test="isCommend != null">
+				#{isCommend,jdbcType=BIT},
+			</if>
+			<if test="isActivity != null">
+				#{isActivity,jdbcType=BIT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=INTEGER},
+			</if>
+			<if test="sales != null">
+				#{sales,jdbcType=INTEGER},
+			</if>
+			<if test="clickNum != null">
+				#{clickNum,jdbcType=INTEGER},
+			</if>
+			<if test="grade != null">
+				#{grade,jdbcType=DOUBLE},
+			</if>
+			<if test="whetherFee != null">
+				#{whetherFee,jdbcType=BIT},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.lwyykj.core.bean.product.ProductQuery"
+		resultType="java.lang.Integer">
+		select count(*) from ywyf_product
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update ywyf_product
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.brandId != null">
+				brand_id = #{record.brandId,jdbcType=INTEGER},
+			</if>
+			<if test="record.facId != null">
+				fac_id = #{record.facId,jdbcType=INTEGER},
+			</if>
+			<if test="record.pic != null">
+				pic = #{record.pic,jdbcType=VARCHAR},
+			</if>
+			<if test="record.name != null">
+				name = #{record.name,jdbcType=VARCHAR},
+			</if>
+			<if test="record.batchNum != null">
+				batch_num = #{record.batchNum,jdbcType=VARCHAR},
+			</if>
+			<if test="record.dosage != null">
+				dosage = #{record.dosage,jdbcType=VARCHAR},
+			</if>
+			<if test="record.imgs != null">
+				imgs = #{record.imgs,jdbcType=VARCHAR},
+			</if>
+			<if test="record.specs != null">
+				specs = #{record.specs,jdbcType=VARCHAR},
+			</if>
+			<if test="record.freight != null">
+				freight = #{record.freight,jdbcType=DOUBLE},
+			</if>
+			<if test="record.description != null">
+				description = #{record.description,jdbcType=VARCHAR},
+			</if>
+			<if test="record.packageList != null">
+				package_list = #{record.packageList,jdbcType=VARCHAR},
+			</if>
+			<if test="record.proTypeid != null">
+				pro_typeId = #{record.proTypeid,jdbcType=INTEGER},
+			</if>
+			<if test="record.diseaseId != null">
+				disease_id = #{record.diseaseId,jdbcType=INTEGER},
+			</if>
+			<if test="record.funId != null">
+				fun_id = #{record.funId,jdbcType=INTEGER},
+			</if>
+			<if test="record.phId != null">
+				ph_id = #{record.phId,jdbcType=INTEGER},
+			</if>
+			<if test="record.isCounter != null">
+				is_counter = #{record.isCounter,jdbcType=BIT},
+			</if>
+			<if test="record.isDel != null">
+				is_del = #{record.isDel,jdbcType=BIT},
+			</if>
+			<if test="record.isShow != null">
+				is_show = #{record.isShow,jdbcType=BIT},
+			</if>
+			<if test="record.isNew != null">
+				is_new = #{record.isNew,jdbcType=BIT},
+			</if>
+			<if test="record.isHot != null">
+				is_hot = #{record.isHot,jdbcType=BIT},
+			</if>
+			<if test="record.isCommend != null">
+				is_commend = #{record.isCommend,jdbcType=BIT},
+			</if>
+			<if test="record.isActivity != null">
+				is_activity = #{record.isActivity,jdbcType=BIT},
+			</if>
+			<if test="record.createTime != null">
+				create_time = #{record.createTime,jdbcType=INTEGER},
+			</if>
+			<if test="record.sales != null">
+				sales = #{record.sales,jdbcType=INTEGER},
+			</if>
+			<if test="record.clickNum != null">
+				click_num = #{record.clickNum,jdbcType=INTEGER},
+			</if>
+			<if test="record.grade != null">
+				grade = #{record.grade,jdbcType=DOUBLE},
+			</if>
+			<if test="record.whetherFee != null">
+				whether_fee = #{record.whetherFee,jdbcType=BIT},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update ywyf_product
+		set id = #{record.id,jdbcType=INTEGER},
+		brand_id = #{record.brandId,jdbcType=INTEGER},
+		fac_id = #{record.facId,jdbcType=INTEGER},
+		pic = #{record.pic,jdbcType=VARCHAR},
+		name = #{record.name,jdbcType=VARCHAR},
+		batch_num = #{record.batchNum,jdbcType=VARCHAR},
+		dosage = #{record.dosage,jdbcType=VARCHAR},
+		imgs = #{record.imgs,jdbcType=VARCHAR},
+		specs = #{record.specs,jdbcType=VARCHAR},
+		freight = #{record.freight,jdbcType=DOUBLE},
+		description = #{record.description,jdbcType=VARCHAR},
+		package_list = #{record.packageList,jdbcType=VARCHAR},
+		pro_typeId = #{record.proTypeid,jdbcType=INTEGER},
+		disease_id = #{record.diseaseId,jdbcType=INTEGER},
+		fun_id = #{record.funId,jdbcType=INTEGER},
+		ph_id = #{record.phId,jdbcType=INTEGER},
+		is_counter = #{record.isCounter,jdbcType=BIT},
+		is_del = #{record.isDel,jdbcType=BIT},
+		is_show = #{record.isShow,jdbcType=BIT},
+		is_new = #{record.isNew,jdbcType=BIT},
+		is_hot = #{record.isHot,jdbcType=BIT},
+		is_commend = #{record.isCommend,jdbcType=BIT},
+		is_activity = #{record.isActivity,jdbcType=BIT},
+		create_time = #{record.createTime,jdbcType=INTEGER},
+		sales = #{record.sales,jdbcType=INTEGER},
+		click_num = #{record.clickNum,jdbcType=INTEGER},
+		grade = #{record.grade,jdbcType=DOUBLE},
+		whether_fee = #{record.whetherFee,jdbcType=BIT}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.lwyykj.core.bean.product.Product">
+		update ywyf_product
+		<set>
+			<if test="brandId != null">
+				brand_id = #{brandId,jdbcType=INTEGER},
+			</if>
+			<if test="facId != null">
+				fac_id = #{facId,jdbcType=INTEGER},
+			</if>
+			<if test="pic != null">
+				pic = #{pic,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="batchNum != null">
+				batch_num = #{batchNum,jdbcType=VARCHAR},
+			</if>
+			<if test="dosage != null">
+				dosage = #{dosage,jdbcType=VARCHAR},
+			</if>
+			<if test="imgs != null">
+				imgs = #{imgs,jdbcType=VARCHAR},
+			</if>
+			<if test="specs != null">
+				specs = #{specs,jdbcType=VARCHAR},
+			</if>
+			<if test="freight != null">
+				freight = #{freight,jdbcType=DOUBLE},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="packageList != null">
+				package_list = #{packageList,jdbcType=VARCHAR},
+			</if>
+			<if test="proTypeid != null">
+				pro_typeId = #{proTypeid,jdbcType=INTEGER},
+			</if>
+			<if test="diseaseId != null">
+				disease_id = #{diseaseId,jdbcType=INTEGER},
+			</if>
+			<if test="funId != null">
+				fun_id = #{funId,jdbcType=INTEGER},
+			</if>
+			<if test="phId != null">
+				ph_id = #{phId,jdbcType=INTEGER},
+			</if>
+			<if test="isCounter != null">
+				is_counter = #{isCounter,jdbcType=BIT},
+			</if>
+			<if test="isDel != null">
+				is_del = #{isDel,jdbcType=BIT},
+			</if>
+			<if test="isShow != null">
+				is_show = #{isShow,jdbcType=BIT},
+			</if>
+			<if test="isNew != null">
+				is_new = #{isNew,jdbcType=BIT},
+			</if>
+			<if test="isHot != null">
+				is_hot = #{isHot,jdbcType=BIT},
+			</if>
+			<if test="isCommend != null">
+				is_commend = #{isCommend,jdbcType=BIT},
+			</if>
+			<if test="isActivity != null">
+				is_activity = #{isActivity,jdbcType=BIT},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=INTEGER},
+			</if>
+			<if test="sales != null">
+				sales = #{sales,jdbcType=INTEGER},
+			</if>
+			<if test="clickNum != null">
+				click_num = #{clickNum,jdbcType=INTEGER},
+			</if>
+			<if test="grade != null">
+				grade = #{grade,jdbcType=DOUBLE},
+			</if>
+			<if test="whetherFee != null">
+				whether_fee = #{whetherFee,jdbcType=BIT},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.lwyykj.core.bean.product.Product">
+		update ywyf_product
+		set brand_id = #{brandId,jdbcType=INTEGER},
+		fac_id = #{facId,jdbcType=INTEGER},
+		pic = #{pic,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		batch_num = #{batchNum,jdbcType=VARCHAR},
+		dosage = #{dosage,jdbcType=VARCHAR},
+		imgs = #{imgs,jdbcType=VARCHAR},
+		specs = #{specs,jdbcType=VARCHAR},
+		freight = #{freight,jdbcType=DOUBLE},
+		description = #{description,jdbcType=VARCHAR},
+		package_list = #{packageList,jdbcType=VARCHAR},
+		pro_typeId = #{proTypeid,jdbcType=INTEGER},
+		disease_id = #{diseaseId,jdbcType=INTEGER},
+		fun_id = #{funId,jdbcType=INTEGER},
+		ph_id = #{phId,jdbcType=INTEGER},
+		is_counter = #{isCounter,jdbcType=BIT},
+		is_del = #{isDel,jdbcType=BIT},
+		is_show = #{isShow,jdbcType=BIT},
+		is_new = #{isNew,jdbcType=BIT},
+		is_hot = #{isHot,jdbcType=BIT},
+		is_commend = #{isCommend,jdbcType=BIT},
+		is_activity = #{isActivity,jdbcType=BIT},
+		create_time = #{createTime,jdbcType=INTEGER},
+		sales = #{sales,jdbcType=INTEGER},
+		click_num = #{clickNum,jdbcType=INTEGER},
+		grade = #{grade,jdbcType=DOUBLE},
+		whether_fee = #{whetherFee,jdbcType=BIT}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<!-- 批量删除 -->
+	<update id="deletes" parameterType="Integer">
+		update ywyf_product
+		set is_del = 1
+		<where>
+			id in
+			<foreach collection="array" item="id" separator="," open="("
+				close=")">
+				#{id}
+			</foreach>
+		</where>
+	</update>
+	<!-- 批量上架 -->
+	<update id="upByIds" parameterType="Integer">
+		update ywyf_product
+		set is_show = 1
+		<where>
+			id in
+			<foreach collection="array" item="id" separator="," open="("
+				close=")">
+				#{id}
+			</foreach>
+		</where>
+	</update>
+	<!-- 批量下架 -->
+	<update id="unShowByIds" parameterType="Integer">
+		update ywyf_product
+		set is_show = 0
+		<where>
+			id in
+			<foreach collection="array" item="id" separator="," open="("
+				close=")">
+				#{id}
+			</foreach>
+		</where>
+	</update>
+	<!-- where in 查询 -->
+	<select id="selectByIds" parameterType="Integer" resultMap="BaseResultMap">
+		select * from ywyf_product
+		<where>
+			id in
+			<foreach collection="array" item="id" separator="," open="("
+				close=")">
+				#{id}
+			</foreach>
+		</where>
+	</select>
+	<!-- 主键查询 只留ID和name -->
+	<select id="findByPrimary" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		id,name,is_counter
+		from ywyf_product
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+</mapper>

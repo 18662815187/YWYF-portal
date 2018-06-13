@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lwyykj.core.dao.order.OrderDao" >
+  <resultMap id="BaseResultMap" type="com.lwyykj.core.bean.order.Order" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+    <result column="pay_num" property="payNum" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="doc_id" property="docId" jdbcType="INTEGER" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="send_id" property="sendId" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="INTEGER" />
+    <result column="totalfee" property="totalfee" jdbcType="DOUBLE" />
+    <result column="paytime" property="paytime" jdbcType="INTEGER" />
+    <result column="payment_way" property="paymentWay" jdbcType="INTEGER" />
+    <result column="expiress_num" property="expiressNum" jdbcType="VARCHAR" />
+    <result column="sendtime" property="sendtime" jdbcType="INTEGER" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="prescription_id" property="prescriptionId" jdbcType="INTEGER" />
+    <result column="pay_record_id" property="payRecordId" jdbcType="INTEGER" />
+    <result column="is_del" property="isDel" jdbcType="BIT" />
+    <result column="flag" property="flag" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      id, order_num, pay_num, uid, doc_id, store_id, send_id, addtime, totalfee, paytime, 
+      payment_way, expiress_num, sendtime, order_status, note, prescription_id, pay_record_id, 
+      is_del, flag
+    </if>
+    <if test="fields != null" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lwyykj.core.bean.order.OrderQuery" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ywyf_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null" >
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    id,order_num,pay_num,uid,doc_id,store_id,send_id,addtime,totalfee,paytime,payment_way,expiress_num,sendtime,order_status,note,prescription_id,pay_record_id,is_del,flag
+    from ywyf_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ywyf_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lwyykj.core.bean.order.OrderQuery" >
+    delete from ywyf_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lwyykj.core.bean.order.Order" >
+    insert into ywyf_order (id, order_num, pay_num, 
+      uid, doc_id, store_id, 
+      send_id, addtime, totalfee, 
+      paytime, payment_way, expiress_num, 
+      sendtime, order_status, note, 
+      prescription_id, pay_record_id, is_del, 
+      flag)
+    values (#{id,jdbcType=INTEGER}, #{orderNum,jdbcType=VARCHAR}, #{payNum,jdbcType=VARCHAR}, 
+      #{uid,jdbcType=INTEGER}, #{docId,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, 
+      #{sendId,jdbcType=INTEGER}, #{addtime,jdbcType=INTEGER}, #{totalfee,jdbcType=DOUBLE}, 
+      #{paytime,jdbcType=INTEGER}, #{paymentWay,jdbcType=INTEGER}, #{expiressNum,jdbcType=VARCHAR}, 
+      #{sendtime,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR}, 
+      #{prescriptionId,jdbcType=INTEGER}, #{payRecordId,jdbcType=INTEGER}, #{isDel,jdbcType=BIT}, 
+      #{flag,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lwyykj.core.bean.order.Order" useGeneratedKeys="true" keyProperty="id">
+    insert into ywyf_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+      <if test="payNum != null" >
+        pay_num,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="docId != null" >
+        doc_id,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="sendId != null" >
+        send_id,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="totalfee != null" >
+        totalfee,
+      </if>
+      <if test="paytime != null" >
+        paytime,
+      </if>
+      <if test="paymentWay != null" >
+        payment_way,
+      </if>
+      <if test="expiressNum != null" >
+        expiress_num,
+      </if>
+      <if test="sendtime != null" >
+        sendtime,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="prescriptionId != null" >
+        prescription_id,
+      </if>
+      <if test="payRecordId != null" >
+        pay_record_id,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="payNum != null" >
+        #{payNum,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="docId != null" >
+        #{docId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="sendId != null" >
+        #{sendId,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="totalfee != null" >
+        #{totalfee,jdbcType=DOUBLE},
+      </if>
+      <if test="paytime != null" >
+        #{paytime,jdbcType=INTEGER},
+      </if>
+      <if test="paymentWay != null" >
+        #{paymentWay,jdbcType=INTEGER},
+      </if>
+      <if test="expiressNum != null" >
+        #{expiressNum,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionId != null" >
+        #{prescriptionId,jdbcType=INTEGER},
+      </if>
+      <if test="payRecordId != null" >
+        #{payRecordId,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=BIT},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lwyykj.core.bean.order.OrderQuery" resultType="java.lang.Integer" >
+    select count(*) from ywyf_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ywyf_order
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderNum != null" >
+        order_num = #{record.orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payNum != null" >
+        pay_num = #{record.payNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uid != null" >
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.docId != null" >
+        doc_id = #{record.docId,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeId != null" >
+        store_id = #{record.storeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendId != null" >
+        send_id = #{record.sendId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addtime != null" >
+        addtime = #{record.addtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalfee != null" >
+        totalfee = #{record.totalfee,jdbcType=DOUBLE},
+      </if>
+      <if test="record.paytime != null" >
+        paytime = #{record.paytime,jdbcType=INTEGER},
+      </if>
+      <if test="record.paymentWay != null" >
+        payment_way = #{record.paymentWay,jdbcType=INTEGER},
+      </if>
+      <if test="record.expiressNum != null" >
+        expiress_num = #{record.expiressNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendtime != null" >
+        sendtime = #{record.sendtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderStatus != null" >
+        order_status = #{record.orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.note != null" >
+        note = #{record.note,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prescriptionId != null" >
+        prescription_id = #{record.prescriptionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.payRecordId != null" >
+        pay_record_id = #{record.payRecordId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDel != null" >
+        is_del = #{record.isDel,jdbcType=BIT},
+      </if>
+      <if test="record.flag != null" >
+        flag = #{record.flag,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ywyf_order
+    set id = #{record.id,jdbcType=INTEGER},
+      order_num = #{record.orderNum,jdbcType=VARCHAR},
+      pay_num = #{record.payNum,jdbcType=VARCHAR},
+      uid = #{record.uid,jdbcType=INTEGER},
+      doc_id = #{record.docId,jdbcType=INTEGER},
+      store_id = #{record.storeId,jdbcType=INTEGER},
+      send_id = #{record.sendId,jdbcType=INTEGER},
+      addtime = #{record.addtime,jdbcType=INTEGER},
+      totalfee = #{record.totalfee,jdbcType=DOUBLE},
+      paytime = #{record.paytime,jdbcType=INTEGER},
+      payment_way = #{record.paymentWay,jdbcType=INTEGER},
+      expiress_num = #{record.expiressNum,jdbcType=VARCHAR},
+      sendtime = #{record.sendtime,jdbcType=INTEGER},
+      order_status = #{record.orderStatus,jdbcType=INTEGER},
+      note = #{record.note,jdbcType=VARCHAR},
+      prescription_id = #{record.prescriptionId,jdbcType=INTEGER},
+      pay_record_id = #{record.payRecordId,jdbcType=INTEGER},
+      is_del = #{record.isDel,jdbcType=BIT},
+      flag = #{record.flag,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lwyykj.core.bean.order.Order" >
+    update ywyf_order
+    <set >
+      <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="payNum != null" >
+        pay_num = #{payNum,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="docId != null" >
+        doc_id = #{docId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="sendId != null" >
+        send_id = #{sendId,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="totalfee != null" >
+        totalfee = #{totalfee,jdbcType=DOUBLE},
+      </if>
+      <if test="paytime != null" >
+        paytime = #{paytime,jdbcType=INTEGER},
+      </if>
+      <if test="paymentWay != null" >
+        payment_way = #{paymentWay,jdbcType=INTEGER},
+      </if>
+      <if test="expiressNum != null" >
+        expiress_num = #{expiressNum,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtime != null" >
+        sendtime = #{sendtime,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionId != null" >
+        prescription_id = #{prescriptionId,jdbcType=INTEGER},
+      </if>
+      <if test="payRecordId != null" >
+        pay_record_id = #{payRecordId,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=BIT},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lwyykj.core.bean.order.Order" >
+    update ywyf_order
+    set order_num = #{orderNum,jdbcType=VARCHAR},
+      pay_num = #{payNum,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=INTEGER},
+      doc_id = #{docId,jdbcType=INTEGER},
+      store_id = #{storeId,jdbcType=INTEGER},
+      send_id = #{sendId,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=INTEGER},
+      totalfee = #{totalfee,jdbcType=DOUBLE},
+      paytime = #{paytime,jdbcType=INTEGER},
+      payment_way = #{paymentWay,jdbcType=INTEGER},
+      expiress_num = #{expiressNum,jdbcType=VARCHAR},
+      sendtime = #{sendtime,jdbcType=INTEGER},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      note = #{note,jdbcType=VARCHAR},
+      prescription_id = #{prescriptionId,jdbcType=INTEGER},
+      pay_record_id = #{payRecordId,jdbcType=INTEGER},
+      is_del = #{isDel,jdbcType=BIT},
+      flag = #{flag,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 通过oid更新订单金额 -->
+  <update id="updateByOid">
+    update ywyf_order
+    set totalfee = #{totalFee}
+    where id = #{id}
+  </update>
+  <!-- 通过oid更新订单金额 -->
+  <update id="modifyOrder">
+    update ywyf_order
+    set order_status = #{status}
+    where id = #{id}
+  </update>
+  <!-- 通过支付流水号查询 -->
+   <select id="selectByPayNum" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    id,order_num,pay_num,uid,addtime,totalfee,paytime,payment_way,sendtime,order_status,is_del
+    from ywyf_order
+    where pay_num = #{0} and is_del=0
+  </select>
+</mapper>

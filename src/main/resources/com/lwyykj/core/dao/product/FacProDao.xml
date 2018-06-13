@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lwyykj.core.dao.product.FacProDao" >
+  <resultMap id="BaseResultMap" type="com.lwyykj.core.bean.product.FacPro" >
+    <result column="pro_id" property="proId" jdbcType="INTEGER" />
+    <result column="fac_name" property="facName" jdbcType="VARCHAR" />
+    <result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="pro_name" property="proName" jdbcType="VARCHAR" />
+    <result column="imgs" property="imgs" jdbcType="VARCHAR" />
+    <result column="specs" property="specs" jdbcType="VARCHAR" />
+    <result column="is_del" property="isDel" jdbcType="BIT" />
+    <result column="is_show" property="isShow" jdbcType="BIT" />
+    <result column="is_new" property="isNew" jdbcType="BIT" />
+    <result column="is_hot" property="isHot" jdbcType="BIT" />
+    <result column="is_commend" property="isCommend" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="click_num" property="clickNum" jdbcType="INTEGER" />
+    <result column="grade" property="grade" jdbcType="DOUBLE" />
+    <result column="ph_name" property="phName" jdbcType="VARCHAR" />
+    <result column="hos_name" property="hosName" jdbcType="VARCHAR" />
+    <result column="fun_id" property="funId" jdbcType="INTEGER" />
+    <result column="ph_id" property="phId" jdbcType="INTEGER" />
+    <result column="disease_id" property="diseaseId" jdbcType="INTEGER" />
+    <result column="pro_typeId" property="proTypeid" jdbcType="INTEGER" />
+    <result column="batch_num" property="batchNum" jdbcType="VARCHAR" />
+    <result column="dosage" property="dosage" jdbcType="VARCHAR" />
+    <result column="freigth" property="freigth" jdbcType="DOUBLE" />
+    <result column="is_counter" property="isCounter" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      pro_id, fac_name, brand_name, pic, pro_name, imgs, specs, is_del, is_show, is_new, 
+      is_hot, is_commend, create_time, click_num, grade, ph_name, hos_name, fun_id, ph_id, 
+      disease_id, pro_typeId, batch_num, dosage, freigth, is_counter
+    </if>
+    <if test="fields != null" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lwyykj.core.bean.product.FacProQuery" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ywyf_fac_pro_ph_hos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null" >
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.lwyykj.core.bean.product.FacProQuery" >
+    delete from ywyf_fac_pro_ph_hos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lwyykj.core.bean.product.FacPro" >
+    insert into ywyf_fac_pro_ph_hos (pro_id, fac_name, brand_name, 
+      pic, pro_name, imgs, 
+      specs, is_del, is_show, is_new, 
+      is_hot, is_commend, create_time, 
+      click_num, grade, ph_name, 
+      hos_name, fun_id, ph_id, 
+      disease_id, pro_typeId, batch_num, 
+      dosage, freigth, is_counter
+      )
+    values (#{proId,jdbcType=INTEGER}, #{facName,jdbcType=VARCHAR}, #{brandName,jdbcType=VARCHAR}, 
+      #{pic,jdbcType=VARCHAR}, #{proName,jdbcType=VARCHAR}, #{imgs,jdbcType=VARCHAR}, 
+      #{specs,jdbcType=VARCHAR}, #{isDel,jdbcType=BIT}, #{isShow,jdbcType=BIT}, #{isNew,jdbcType=BIT}, 
+      #{isHot,jdbcType=BIT}, #{isCommend,jdbcType=BIT}, #{createTime,jdbcType=INTEGER}, 
+      #{clickNum,jdbcType=INTEGER}, #{grade,jdbcType=DOUBLE}, #{phName,jdbcType=VARCHAR}, 
+      #{hosName,jdbcType=VARCHAR}, #{funId,jdbcType=INTEGER}, #{phId,jdbcType=INTEGER}, 
+      #{diseaseId,jdbcType=INTEGER}, #{proTypeid,jdbcType=INTEGER}, #{batchNum,jdbcType=VARCHAR}, 
+      #{dosage,jdbcType=VARCHAR}, #{freigth,jdbcType=DOUBLE}, #{isCounter,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lwyykj.core.bean.product.FacPro" >
+    insert into ywyf_fac_pro_ph_hos
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="proId != null" >
+        pro_id,
+      </if>
+      <if test="facName != null" >
+        fac_name,
+      </if>
+      <if test="brandName != null" >
+        brand_name,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+      <if test="proName != null" >
+        pro_name,
+      </if>
+      <if test="imgs != null" >
+        imgs,
+      </if>
+      <if test="specs != null" >
+        specs,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="isShow != null" >
+        is_show,
+      </if>
+      <if test="isNew != null" >
+        is_new,
+      </if>
+      <if test="isHot != null" >
+        is_hot,
+      </if>
+      <if test="isCommend != null" >
+        is_commend,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="clickNum != null" >
+        click_num,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="phName != null" >
+        ph_name,
+      </if>
+      <if test="hosName != null" >
+        hos_name,
+      </if>
+      <if test="funId != null" >
+        fun_id,
+      </if>
+      <if test="phId != null" >
+        ph_id,
+      </if>
+      <if test="diseaseId != null" >
+        disease_id,
+      </if>
+      <if test="proTypeid != null" >
+        pro_typeId,
+      </if>
+      <if test="batchNum != null" >
+        batch_num,
+      </if>
+      <if test="dosage != null" >
+        dosage,
+      </if>
+      <if test="freigth != null" >
+        freigth,
+      </if>
+      <if test="isCounter != null" >
+        is_counter,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="proId != null" >
+        #{proId,jdbcType=INTEGER},
+      </if>
+      <if test="facName != null" >
+        #{facName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandName != null" >
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="proName != null" >
+        #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgs != null" >
+        #{imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="specs != null" >
+        #{specs,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=BIT},
+      </if>
+      <if test="isShow != null" >
+        #{isShow,jdbcType=BIT},
+      </if>
+      <if test="isNew != null" >
+        #{isNew,jdbcType=BIT},
+      </if>
+      <if test="isHot != null" >
+        #{isHot,jdbcType=BIT},
+      </if>
+      <if test="isCommend != null" >
+        #{isCommend,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="clickNum != null" >
+        #{clickNum,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=DOUBLE},
+      </if>
+      <if test="phName != null" >
+        #{phName,jdbcType=VARCHAR},
+      </if>
+      <if test="hosName != null" >
+        #{hosName,jdbcType=VARCHAR},
+      </if>
+      <if test="funId != null" >
+        #{funId,jdbcType=INTEGER},
+      </if>
+      <if test="phId != null" >
+        #{phId,jdbcType=INTEGER},
+      </if>
+      <if test="diseaseId != null" >
+        #{diseaseId,jdbcType=INTEGER},
+      </if>
+      <if test="proTypeid != null" >
+        #{proTypeid,jdbcType=INTEGER},
+      </if>
+      <if test="batchNum != null" >
+        #{batchNum,jdbcType=VARCHAR},
+      </if>
+      <if test="dosage != null" >
+        #{dosage,jdbcType=VARCHAR},
+      </if>
+      <if test="freigth != null" >
+        #{freigth,jdbcType=DOUBLE},
+      </if>
+      <if test="isCounter != null" >
+        #{isCounter,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lwyykj.core.bean.product.FacProQuery" resultType="java.lang.Integer" >
+    select count(*) from ywyf_fac_pro_ph_hos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ywyf_fac_pro_ph_hos
+    <set >
+      <if test="record.proId != null" >
+        pro_id = #{record.proId,jdbcType=INTEGER},
+      </if>
+      <if test="record.facName != null" >
+        fac_name = #{record.facName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandName != null" >
+        brand_name = #{record.brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic != null" >
+        pic = #{record.pic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proName != null" >
+        pro_name = #{record.proName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgs != null" >
+        imgs = #{record.imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specs != null" >
+        specs = #{record.specs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDel != null" >
+        is_del = #{record.isDel,jdbcType=BIT},
+      </if>
+      <if test="record.isShow != null" >
+        is_show = #{record.isShow,jdbcType=BIT},
+      </if>
+      <if test="record.isNew != null" >
+        is_new = #{record.isNew,jdbcType=BIT},
+      </if>
+      <if test="record.isHot != null" >
+        is_hot = #{record.isHot,jdbcType=BIT},
+      </if>
+      <if test="record.isCommend != null" >
+        is_commend = #{record.isCommend,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.clickNum != null" >
+        click_num = #{record.clickNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.grade != null" >
+        grade = #{record.grade,jdbcType=DOUBLE},
+      </if>
+      <if test="record.phName != null" >
+        ph_name = #{record.phName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hosName != null" >
+        hos_name = #{record.hosName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.funId != null" >
+        fun_id = #{record.funId,jdbcType=INTEGER},
+      </if>
+      <if test="record.phId != null" >
+        ph_id = #{record.phId,jdbcType=INTEGER},
+      </if>
+      <if test="record.diseaseId != null" >
+        disease_id = #{record.diseaseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.proTypeid != null" >
+        pro_typeId = #{record.proTypeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.batchNum != null" >
+        batch_num = #{record.batchNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dosage != null" >
+        dosage = #{record.dosage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.freigth != null" >
+        freigth = #{record.freigth,jdbcType=DOUBLE},
+      </if>
+      <if test="record.isCounter != null" >
+        is_counter = #{record.isCounter,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ywyf_fac_pro_ph_hos
+    set pro_id = #{record.proId,jdbcType=INTEGER},
+      fac_name = #{record.facName,jdbcType=VARCHAR},
+      brand_name = #{record.brandName,jdbcType=VARCHAR},
+      pic = #{record.pic,jdbcType=VARCHAR},
+      pro_name = #{record.proName,jdbcType=VARCHAR},
+      imgs = #{record.imgs,jdbcType=VARCHAR},
+      specs = #{record.specs,jdbcType=VARCHAR},
+      is_del = #{record.isDel,jdbcType=BIT},
+      is_show = #{record.isShow,jdbcType=BIT},
+      is_new = #{record.isNew,jdbcType=BIT},
+      is_hot = #{record.isHot,jdbcType=BIT},
+      is_commend = #{record.isCommend,jdbcType=BIT},
+      create_time = #{record.createTime,jdbcType=INTEGER},
+      click_num = #{record.clickNum,jdbcType=INTEGER},
+      grade = #{record.grade,jdbcType=DOUBLE},
+      ph_name = #{record.phName,jdbcType=VARCHAR},
+      hos_name = #{record.hosName,jdbcType=VARCHAR},
+      fun_id = #{record.funId,jdbcType=INTEGER},
+      ph_id = #{record.phId,jdbcType=INTEGER},
+      disease_id = #{record.diseaseId,jdbcType=INTEGER},
+      pro_typeId = #{record.proTypeid,jdbcType=INTEGER},
+      batch_num = #{record.batchNum,jdbcType=VARCHAR},
+      dosage = #{record.dosage,jdbcType=VARCHAR},
+      freigth = #{record.freigth,jdbcType=DOUBLE},
+      is_counter = #{record.isCounter,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

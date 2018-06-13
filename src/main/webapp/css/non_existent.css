@@ -1,0 +1,150 @@
+.existent_b1{
+	min-height: 500px;
+}
+.existent_b2 {
+	max-width: 1200px;
+	margin: 0px auto;
+	margin-top: 20px;
+}
+
+.cue_b {
+	margin: 0px auto;
+}
+
+.cue {
+	position: relative;
+}
+
+.cue img {
+	width: 50px;
+	position: absolute;
+	top: 50px;
+	left: 80px;
+}
+
+.cue div {
+	margin-left: 150px;
+	padding: 50px 0;
+}
+
+.cue h2 {
+	font-size: 20px;
+	font-weight: 250px;
+	margin-bottom: 25px;
+}
+
+.cue h2 span {
+	font-size: 20px;
+	font-weight: 250px;
+}
+
+.recom_list{
+	display: inline-block;
+	min-width: 19%;
+	margin: 0 auto;
+	text-align: center;
+}
+.recom_list:last-child{
+	border: none;
+	
+}
+.recom_head{
+	font-size: 18px;
+	padding: 5px;
+	border-bottom: 1px solid #cdcdcd;
+}
+.recommend {
+	border-top: 1px solid #cdcdcd;
+	border-bottom: 1px solid #cdcdcd;
+	table-layout: fixed;
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+
+.recom_list img {
+	border: 1px solid #cdcdcd;
+	width: 150px;
+	height: 150px;
+	margin: 15px 0px;
+}
+
+.recommend_text {
+	font-size: 16px;
+	width: 150px;
+	margin: auto;
+	text-align: left;
+	padding: 3px 0px;
+}
+.recom_box{
+	margin-bottom: 40px;
+	padding: 5px;s
+}
+/*add_shop*/
+.success_add{
+	width: 30px !important;
+}
+.success_add_b{
+	background-color: #f1f1f1;
+	height: 200px;
+}
+.success_add_box{
+	max-width: 1200px;
+	margin: 0px auto;
+	padding-top: 15px;
+}
+.success_add_box h2 {
+	font-size: 20px;
+	font-weight: 250px;
+	margin:10px 5px;
+	display: inline-block;
+	color: #0b74df;
+}
+.success_add_pro{
+	margin-top:30px;
+	margin-bottom: 60px;
+}
+.success_add_pro img{
+	position: absolute;
+	width: 70px;
+	height: 70px;
+	border: 1px solid #cdcdcd;
+}
+.success_add_pro p{
+	margin-left:80px;
+}
+.success_add_pro p:first-child{
+	padding-top: 20px;
+}
+.success_add_pro p{
+	color: #999;
+}
+.see_commodity{
+	float: right;
+	color: #e4393c;
+	font-size: 16px;
+	padding: 5px 15px;
+	background-color: #fff;
+	margin: 5px 10px;
+	border: 1px solid #fff;
+}
+.see_commodity:hover{
+	border: 1px solid #e4393c;
+	color: #e4393c;
+}
+.see_shop{
+	float: right;
+	color: #fff;
+	font-size: 16px;
+	padding: 5px 15px;
+	background-color: #e4393c;
+	border: 1px solid #e4393c;
+	margin: 5px 10px;
+}
+.see_shop:hover{
+	color: #fff;
+	background-color: #c03033;
+	border: 1px solid #c03033;
+}
+.success_add_b1{
+	min-height: 420px;
+}

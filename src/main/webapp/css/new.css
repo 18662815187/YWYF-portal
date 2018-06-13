@@ -1,0 +1,149 @@
+.foot{
+	width: 100%;
+	padding: 30px;
+	background-color: #444a50;
+	color: #959aa0;
+}
+.foot p{
+	margin-bottom: 25px;
+	font-size: 14px;
+}
+.foot span{
+	color: #F1F1F1;
+	padding:0px 15px ;
+	font-size: 14px;
+}
+.foot span:hover{
+	text-decoration: underline
+}	   
+.font_999{
+	color: #999;
+}	   
+.brand img{
+	margin: 5px;
+	padding: 5px;
+	height: 80px;
+}	
+.text_login_14{
+	margin-top:10px ;
+	font-size: 14px;
+}
+
+.cue_text_box img{
+	width: 12px;
+	float: left;
+	margin: 2px;
+}
+.cue_text{
+	color: #FF4200;
+	margin-bottom:5px ;
+	float: left;
+	font-size: 12px;
+}
+@media only screen and (min-width:1200px ) {
+	.wt{
+		width: 1200px;
+		margin: auto;
+	}
+}
+@media only screen and (min-width:1025px ) {
+	.wt{
+		margin: auto;
+	}			
+	.user-test{
+		width: 230px;
+		position: relative;
+	}
+	.user-test img{
+		right: -90px;
+	}
+	.login-links{
+		max-width: 640px;
+	}
+	.cue_text_box{
+		max-width: 640px;
+	}
+}
+@media only screen and (min-width:640px)and (max-width:1025px ){
+	.wt{
+		margin: auto;
+	}
+	.user-test{
+		width: 540px;
+		position: relative;
+	}
+	.user-test img{
+		right: -100px;
+	}
+	.cue_text_box{
+		margin: auto;
+	}
+	.login-links{
+		max-width: 640px;
+	}
+	.cue_text_box{
+		max-width: 640px;
+	}
+	.foot{
+		display: none;
+	}
+}
+@media only screen and (max-width:640px ) {
+	.wt{
+		margin: auto;
+	}
+	.foot{
+		display: none;
+	}
+	.user-test{
+		width: 230px;
+		position: relative;
+	}
+	.user-test img{
+		right: -90px;
+	}
+	.login-links{
+		max-width: 320px;
+	}
+	.cue_text_box{
+		max-width: 320px;
+		margin: auto;
+	}
+}
+
+.user-test img{
+	position: absolute;
+	bottom: 6px;
+	width: 80px;
+	display: inline-block;
+}
+.select_list_price input:first-child{
+	margin-left: 25px;
+}
+.select_list_price input{
+	width: 50px;
+	margin-left: 5px;
+	color: #666;
+}
+.select_list_price input[type="button"]{
+	width: 50px;
+	margin-left: 15px;
+	background-color: #0b74df;
+	border: 0px;
+	color: #fff;
+	padding: 3px;
+	
+}
+.user-name i{
+	padding-top:13px ;
+}
+.user-pass i{
+	padding-top:13px ;
+}
+.verification i{
+	padding-top:13px ;
+}
+.user-phone i{
+	padding-top:5px ;
+}
+	

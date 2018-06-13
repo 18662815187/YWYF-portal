@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lwyykj.core.dao.factory.FactoryDao">
+	<resultMap id="BaseResultMap" type="com.lwyykj.core.bean.factory.Factory">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+		<result column="pass" property="pass" jdbcType="VARCHAR" />
+		<result column="manager" property="manager" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="provinces_id" property="provincesId" jdbcType="VARCHAR" />
+		<result column="city_id" property="cityId" jdbcType="VARCHAR" />
+		<result column="area" property="area" jdbcType="VARCHAR" />
+		<result column="pic" property="pic" jdbcType="VARCHAR" />
+		<result column="imgs" property="imgs" jdbcType="VARCHAR" />
+		<result column="money" property="money" jdbcType="DOUBLE" />
+		<result column="parent_id" property="parentId" jdbcType="INTEGER" />
+		<result column="is_show" property="isShow" jdbcType="BIT" />
+		<result column="is_del" property="isDel" jdbcType="BIT" />
+		<result column="reg_type" property="regType" jdbcType="INTEGER" />
+		<result column="reg_time" property="regTime" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<if test="fields == null">
+			id, name, address, tel, pass, manager, phone, content, provinces_id,
+			city_id, area,
+			pic, imgs, money, parent_id, is_show, is_del, reg_type, reg_time
+		</if>
+		<if test="fields != null">
+			${fields}
+		</if>
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.lwyykj.core.bean.factory.FactoryQuery">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from ywyf_factory
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+		<if test="startRow != null">
+			limit #{startRow} , #{pageSize}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		id,name,address,tel,pass,manager,phone,content,provinces_id,city_id,area,pic,imgs,money,parent_id,is_show,is_del,reg_type,reg_time
+		from ywyf_factory
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from ywyf_factory
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.lwyykj.core.bean.factory.FactoryQuery">
+		delete from ywyf_factory
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.lwyykj.core.bean.factory.Factory">
+		insert into ywyf_factory (id, name, address,
+		tel, pass, manager,
+		phone, content, provinces_id,
+		city_id, area, pic,
+		imgs, money, parent_id,
+		is_show, is_del, reg_type, reg_time
+		)
+		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR},
+		#{tel,jdbcType=VARCHAR}, #{pass,jdbcType=VARCHAR}, #{manager,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
+		#{provincesId,jdbcType=VARCHAR},
+		#{cityId,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR},
+		#{imgs,jdbcType=VARCHAR}, #{money,jdbcType=DOUBLE},
+		#{parentId,jdbcType=INTEGER},
+		#{isShow,jdbcType=BIT}, #{isDel,jdbcType=BIT}, #{regType,jdbcType=INTEGER},
+		#{regTime,jdbcType=INTEGER}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.lwyykj.core.bean.factory.Factory">
+		insert into ywyf_factory
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="tel != null">
+				tel,
+			</if>
+			<if test="pass != null">
+				pass,
+			</if>
+			<if test="manager != null">
+				manager,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="provincesId != null">
+				provinces_id,
+			</if>
+			<if test="cityId != null">
+				city_id,
+			</if>
+			<if test="area != null">
+				area,
+			</if>
+			<if test="pic != null">
+				pic,
+			</if>
+			<if test="imgs != null">
+				imgs,
+			</if>
+			<if test="money != null">
+				money,
+			</if>
+			<if test="parentId != null">
+				parent_id,
+			</if>
+			<if test="isShow != null">
+				is_show,
+			</if>
+			<if test="isDel != null">
+				is_del,
+			</if>
+			<if test="regType != null">
+				reg_type,
+			</if>
+			<if test="regTime != null">
+				reg_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				#{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="pass != null">
+				#{pass,jdbcType=VARCHAR},
+			</if>
+			<if test="manager != null">
+				#{manager,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="provincesId != null">
+				#{provincesId,jdbcType=VARCHAR},
+			</if>
+			<if test="cityId != null">
+				#{cityId,jdbcType=VARCHAR},
+			</if>
+			<if test="area != null">
+				#{area,jdbcType=VARCHAR},
+			</if>
+			<if test="pic != null">
+				#{pic,jdbcType=VARCHAR},
+			</if>
+			<if test="imgs != null">
+				#{imgs,jdbcType=VARCHAR},
+			</if>
+			<if test="money != null">
+				#{money,jdbcType=DOUBLE},
+			</if>
+			<if test="parentId != null">
+				#{parentId,jdbcType=INTEGER},
+			</if>
+			<if test="isShow != null">
+				#{isShow,jdbcType=BIT},
+			</if>
+			<if test="isDel != null">
+				#{isDel,jdbcType=BIT},
+			</if>
+			<if test="regType != null">
+				#{regType,jdbcType=INTEGER},
+			</if>
+			<if test="regTime != null">
+				#{regTime,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.lwyykj.core.bean.factory.FactoryQuery"
+		resultType="java.lang.Integer">
+		select count(*) from ywyf_factory
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update ywyf_factory
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.name != null">
+				name = #{record.name,jdbcType=VARCHAR},
+			</if>
+			<if test="record.address != null">
+				address = #{record.address,jdbcType=VARCHAR},
+			</if>
+			<if test="record.tel != null">
+				tel = #{record.tel,jdbcType=VARCHAR},
+			</if>
+			<if test="record.pass != null">
+				pass = #{record.pass,jdbcType=VARCHAR},
+			</if>
+			<if test="record.manager != null">
+				manager = #{record.manager,jdbcType=VARCHAR},
+			</if>
+			<if test="record.phone != null">
+				phone = #{record.phone,jdbcType=VARCHAR},
+			</if>
+			<if test="record.content != null">
+				content = #{record.content,jdbcType=VARCHAR},
+			</if>
+			<if test="record.provincesId != null">
+				provinces_id = #{record.provincesId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.cityId != null">
+				city_id = #{record.cityId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.area != null">
+				area = #{record.area,jdbcType=VARCHAR},
+			</if>
+			<if test="record.pic != null">
+				pic = #{record.pic,jdbcType=VARCHAR},
+			</if>
+			<if test="record.imgs != null">
+				imgs = #{record.imgs,jdbcType=VARCHAR},
+			</if>
+			<if test="record.money != null">
+				money = #{record.money,jdbcType=DOUBLE},
+			</if>
+			<if test="record.parentId != null">
+				parent_id = #{record.parentId,jdbcType=INTEGER},
+			</if>
+			<if test="record.isShow != null">
+				is_show = #{record.isShow,jdbcType=BIT},
+			</if>
+			<if test="record.isDel != null">
+				is_del = #{record.isDel,jdbcType=BIT},
+			</if>
+			<if test="record.regType != null">
+				reg_type = #{record.regType,jdbcType=INTEGER},
+			</if>
+			<if test="record.regTime != null">
+				reg_time = #{record.regTime,jdbcType=INTEGER},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update ywyf_factory
+		set id = #{record.id,jdbcType=INTEGER},
+		name = #{record.name,jdbcType=VARCHAR},
+		address = #{record.address,jdbcType=VARCHAR},
+		tel = #{record.tel,jdbcType=VARCHAR},
+		pass = #{record.pass,jdbcType=VARCHAR},
+		manager = #{record.manager,jdbcType=VARCHAR},
+		phone = #{record.phone,jdbcType=VARCHAR},
+		content = #{record.content,jdbcType=VARCHAR},
+		provinces_id = #{record.provincesId,jdbcType=VARCHAR},
+		city_id = #{record.cityId,jdbcType=VARCHAR},
+		area = #{record.area,jdbcType=VARCHAR},
+		pic = #{record.pic,jdbcType=VARCHAR},
+		imgs = #{record.imgs,jdbcType=VARCHAR},
+		money = #{record.money,jdbcType=DOUBLE},
+		parent_id = #{record.parentId,jdbcType=INTEGER},
+		is_show = #{record.isShow,jdbcType=BIT},
+		is_del = #{record.isDel,jdbcType=BIT},
+		reg_type = #{record.regType,jdbcType=INTEGER},
+		reg_time = #{record.regTime,jdbcType=INTEGER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.lwyykj.core.bean.factory.Factory">
+		update ywyf_factory
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				tel = #{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="pass != null">
+				pass = #{pass,jdbcType=VARCHAR},
+			</if>
+			<if test="manager != null">
+				manager = #{manager,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="provincesId != null">
+				provinces_id = #{provincesId,jdbcType=VARCHAR},
+			</if>
+			<if test="cityId != null">
+				city_id = #{cityId,jdbcType=VARCHAR},
+			</if>
+			<if test="area != null">
+				area = #{area,jdbcType=VARCHAR},
+			</if>
+			<if test="pic != null">
+				pic = #{pic,jdbcType=VARCHAR},
+			</if>
+			<if test="imgs != null">
+				imgs = #{imgs,jdbcType=VARCHAR},
+			</if>
+			<if test="money != null">
+				money = #{money,jdbcType=DOUBLE},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId,jdbcType=INTEGER},
+			</if>
+			<if test="isShow != null">
+				is_show = #{isShow,jdbcType=BIT},
+			</if>
+			<if test="isDel != null">
+				is_del = #{isDel,jdbcType=BIT},
+			</if>
+			<if test="regType != null">
+				reg_type = #{regType,jdbcType=INTEGER},
+			</if>
+			<if test="regTime != null">
+				reg_time = #{regTime,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.lwyykj.core.bean.factory.Factory">
+		update ywyf_factory
+		set name = #{name,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		tel = #{tel,jdbcType=VARCHAR},
+		pass = #{pass,jdbcType=VARCHAR},
+		manager = #{manager,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		content = #{content,jdbcType=VARCHAR},
+		provinces_id = #{provincesId,jdbcType=VARCHAR},
+		city_id = #{cityId,jdbcType=VARCHAR},
+		area = #{area,jdbcType=VARCHAR},
+		pic = #{pic,jdbcType=VARCHAR},
+		imgs = #{imgs,jdbcType=VARCHAR},
+		money = #{money,jdbcType=DOUBLE},
+		parent_id = #{parentId,jdbcType=INTEGER},
+		is_show = #{isShow,jdbcType=BIT},
+		is_del = #{isDel,jdbcType=BIT},
+		reg_type = #{regType,jdbcType=INTEGER},
+		reg_time = #{regTime,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<!-- 单删 -->
+	<update id="delById" parameterType="Integer">
+		update ywyf_factory
+		set is_del = 1
+		where id = #{0}
+	</update>
+	<!-- 批量删除 (1,2,3,4),如果传如的是list类型则parameterType="List" -->
+	<update id="deletes" parameterType="Integer">
+		update ywyf_factory
+		set is_del = 1
+		<where>
+			id in
+			<foreach collection="array" item="id" separator="," open="("
+				close=")">
+				#{id}
+			</foreach>
+		</where>
+	</update>
+	<!-- 批量已审 -->
+	<update id="upByIds" parameterType="Integer">
+		update ywyf_factory
+		set is_show = 1
+		<where>
+			id in
+			<foreach collection="array" item="id" separator="," open="("
+				close=")">
+				#{id}
+			</foreach>
+		</where>
+	</update>
+</mapper>

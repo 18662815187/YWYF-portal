@@ -1,0 +1,73 @@
+@charset "utf-8";
+/* CSS Document */
+h2, #success-pay h2 {font-size: 14px;height: 40px;line-height: 40px;margin-top:0px;}
+.successInfo {text-align: left;display: inline-block;margin-left: -46px;padding:5px 0px;max-width: 547px;}
+.successInfo em{color:#f00; font-weight:700; margin-left:5px;font-size: 18px;}
+.successInfo del{color: #cdcdcd;}
+.take-delivery li {line-height: 28px;height:28px;}
+
+.status .option { margin: 13px 0 25px 0px;text-align: left;}
+.status .option .info {margin-right: 10px;}
+
+.successInfo a span{font-size: 13px; margin: 0 10px 0 10px;color: #f00;}
+.take-delivery {background-color: #fff;padding: 27px 0 27px 60px;color: #333;
+width:100% ;max-width:1000px;margin:0px auto;margin-top: 50px;}
+
+.successInfo li{font-size:18px;text-align: left;}
+.footer{max-width:1000px; margin:0px auto; margin-top:10px;}
+.user-info p{ font-size:14px; padding:3px 0px;margin:0px 0px ;}
+
+ @media only screen and (min-width:640px) 
+{
+.take-delivery{position: relative;height: 350px;background-color: #fff;padding: 27px 0 27px 76px;border: 1px solid #e5e5e5;margin-top: 50px;border: none;}
+.user-info{margin: 40px 0px; background-size:377px 165px;text-align: left;}
+.successInfo {padding: 0 65px 0 56px;float: left;}
+.user-info p{ font-size:14px;}
+
+}
+.status{
+	
+}
+.status h2{
+	text-align: left;
+	font-size: 18px;
+	margin-top: 10px;
+	color: #1B961B;
+}
+.take_img {
+	position: absolute;
+	top: 20px;
+	right: 0px;
+	padding: 0px 50px;
+	border-left:2px solid #f1f1f1 ;
+}
+ @media only screen and (min-width:1024px) {
+ 	.take_img img{
+		width: 300px;
+		height: 300px;
+	}
+ }
+@media only screen and (max-width:1024px) {
+ 	.take_img img{
+		display: none;
+	}
+ }
+ body{
+ 	background: url(../images/syt-bg02.jpg) !important;
+	background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height:600px;
+    text-align: center;
+    line-height: 600px;
+ }
+.icon{
+	position: absolute;
+	left: 25px;
+	top: 30px;
+	width: 30px;
+	height: 30px;
+}
+.foot{
+	text-align: left;
+}
