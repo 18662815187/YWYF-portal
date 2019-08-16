@@ -42,7 +42,7 @@ public class MyConfig implements WXPayConfig {
 
 	@Override
 	public String getKey() {
-		return "c15c86cd3b0abd5e75669eb1254040a1";
+		return "c15c86cd3xxxxx40a1";
 	}
 
 	@Override
