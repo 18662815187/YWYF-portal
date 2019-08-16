@@ -21,7 +21,7 @@ public class MyConfig implements WXPayConfig {
 
 	@Override
 	public String getAppID() {
-		return "wx78edd96baf6e1873";
+		return "wx78xxxx73";
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class MyConfig implements WXPayConfig {
 
 	@Override
 	public String getMchID() {
-		return "1501213721";
+		return "1xxxx21";
 	}
 
 }
